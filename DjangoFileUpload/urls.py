@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', views.home, name="home" ) ,
     path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('fileUpload', views.fileUpload, name="fileUpload")
+    path('fileUpload/', include('Upload.urls', namespace='Upload'))
 ]

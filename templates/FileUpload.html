@@ -16,8 +16,17 @@
                 {% endfor %}
             </div>
             {% endif %}
+            <form action="{% url 'Upload:fileUpload' %}" method="post"   enctype="multipart/form-data">
             
-            file upload page
+                {% csrf_token %}
+                <p>
+                    {{ form.files }}
+                </p>
+                
+                <button type="submit" class="btn btn-primary">Upload</button>
+                
+            </form>
+            
         </div>
     </div>
 </div>
