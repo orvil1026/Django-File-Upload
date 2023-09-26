@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {% if messages %}
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Uploaded Files</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for file in files %}
+                        <li class="list-group-item">
+                            <a href="{% url 'Upload:download_file' file.id %}" style="text-decoration: none;">
+                                <i class="fa fa-file-text-o"></i> {{ file.files.name }}
+                            </a>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item text-muted">No files uploaded.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

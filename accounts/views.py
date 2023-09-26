@@ -6,6 +6,10 @@ from django.contrib.auth import login,logout,authenticate
 # Create your views here.
 
 
+def logout_user(request):
+    logout(request)
+    return redirect('accounts:login')
+
 def register_user(request):
 
     if request.method == 'POST':
