@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from .forms import UploadFileForm
 from django.http import HttpResponse
 from .models import Files
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required()
 def upload_file(request):
 
     if request.method == "POST":
@@ -21,11 +23,12 @@ def upload_file(request):
 
     return render(request, 'FileUpload.html', {'form':form})
 
+@login_required()
 def all_files(request):
     files = Files.objects.all()
     return render(request, 'all_files.html', {'files':files})
 
-
+@login_required()
 def download_file(request, file_id):
     uploaded_file = Files.objects.get(pk=file_id)
     response = HttpResponse(uploaded_file.files, content_type='application/force-download')
